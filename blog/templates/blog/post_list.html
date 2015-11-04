@@ -1,20 +1,11 @@
-<html>
-<head>
-    <title>Ryan's py-blog</title>
-</head>
-<body>
+{% extends "blog/base.html" %}
 
-    <div>
-        <h1><a href="">Hello, universe</a></h1>
-    </div>
-
-    {% for post in posts %}
-	    <div>
-	        <p>Published: {{ post.published_date }}</p>
-	        <h1><a href="">{{ post.title }}</a></h1>
-	        <p>{{ post.text|linebreaks }}</p>        
+{% block content %}
+	{% for post in posts %}
+    	<div class="post">
+	    	<p class="date">Published: {{ post.published_date }}</p>
+	    	<h1><a href="{% url "post_detail" pk=post.pk %}">{{ post.title }}</a></h1>
+	    	<p>{{ post.text|linebreaks }}</p>        
 		</div>
-    {% endfor %}
-
- 	</body>
- </html>
+	{% endfor %}
+{% endblock %}
